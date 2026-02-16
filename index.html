@@ -1,0 +1,732 @@
+<!DOCTYPE html>  
+<html lang="id">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Valentine 💖</title>  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">  
+
+<style>  
+{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+font-family:'Poppins',sans-serif;}  
+.polaroid{
+  background:white;
+  padding:15px 15px 50px 15px; /* bawah lebih tebel */
+  border-radius:8px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  width: fit-content;
+  margin:0;
+  transform: rotate(-3deg);
+  transition: 0.4s ease;
+}
+
+.polaroid img{
+  display:block;
+  width:100%; 
+  aspect-ratio:250px;
+  object-fit:contain;
+  background:#eee;
+  border-radius:4px;
+}
+
+.polaroid .caption{
+  text-align:center;
+  margin-top:15px;
+  font-size:10px;
+  color:#555;
+  font-family: "Courier New", cursive;
+}
+
+.slider{
+  display:flex;
+  gap:20px;
+  overflow-x:auto;
+  padding:40px 20px;
+  scroll-snap-type:x mandatory;
+  align-items:center;
+}
+
+.slider::-webkit-scrollbar{
+  display:none; /* hilangin scrollbar */
+}
+
+.polaroid{
+  flex:0 0 85%;
+  scroll-snap-align:center;
+}
+
+button:hover {
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+.shooting-wrapper,
+.shooting-star{
+  pointer-events: none;
+}
+
+.shooting-wrapper{
+  position:absolute;
+  animation: shootMove 1.2s ease-out forwards;
+}
+
+@keyframes shootMove{
+  0%{
+    transform: translate(0,0);
+    opacity:1;
+  }
+  100%{
+    transform: translate(-300px,500px);
+    opacity:0;
+  }
+}
+
+.shooting-star{
+  width:5px;
+  height:300px;
+  background: linear-gradient(to top, white 0%, rgba(255,255,0) 70%);
+  border-radius:50%;
+  filter: drop-shadow(10 0 0px white);
+  transform: rotate(25deg); /* sekarang ini PASTI ngaruh */
+}
+
+.shooting-star{
+  z-index: 5;
+}
+  
+body{  
+margin:0;  
+background:#ffd6e7;  
+overflow:hidden;  
+}  
+  
+/* ===== PAGE SYSTEM FIX ===== */  
+  
+section{  
+position:absolute;  
+inset:0;  
+display:flex;  
+flex-direction:column;  
+align-items:center;  
+justify-content:center;  
+padding:20px;  
+opacity:0;  
+pointer-events:none;  
+transition:opacity .5s ease;  
+}  
+  
+section.active{  
+opacity:1;  
+pointer-events:auto;  
+z-index:1;  
+}  
+  
+/* ============================ */  
+  
+h1{  
+font-family:'Playfair Display',serif;  
+font-size:28px;  
+text-align:center;  
+margin-bottom:20px;  
+}  
+  
+button{  
+padding:12px 22px;  
+border:none;  
+border-radius:30px;  
+margin:8px;  
+font-size:16px;  
+cursor:pointer;  
+transition:.3s;  
+}  
+  
+.yes{  
+background:#ff6f91;  
+color:white;  
+}  
+  
+.no{  
+background:white;  
+border:1px solid #ff6f91;  
+}  
+
+.small-text{  
+margin-top:10px;  
+font-size:14px;  
+color:#666;  
+}  
+
+section{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:20px;
+opacity:0;
+pointer-events:none;
+transition:opacity .6s ease, transform .6s ease;
+transform:scale(0.98);
+}
+
+section.active{
+opacity:1;
+pointer-events:auto;
+z-index:1;
+transform:scale(1);
+}
+
+/* Hearts */  
+.heart{  
+position:absolute;  
+top:-10px;  
+font-size:30px;  
+color:#ff6f91;  
+animation:fall linear infinite;  
+pointer-events:none;  
+}  
+  
+@keyframes fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(40px) rotate(360deg);
+    opacity: 0;
+  }
+}
+  
+/* Photo */  
+
+.photo-item{  
+display:flex;  
+flex-direction:column;  
+align-items:center;  
+}  
+  
+.caption{  
+margin-top:8px;  
+font-size:14px;  
+color:#555;  
+text-align:center;  
+}  
+.photo-grid img:active{  
+transform:scale(1.05);  
+}  
+  
+/* Letter */  
+.letter{  
+background:linear-gradient(to bottom,#ffd6e0,#fff);  
+padding:20px;  
+border-radius:18px;  
+box-shadow:0 4px 10px rgba(0,0,0,0.1);  
+white-space:pre-line;  
+font-style:italic;  
+max-width:400px;  
+}  
+  
+/* Timeline */  
+
+.timeline {
+  position: relative;
+  width: 100%;
+  padding: 50px 0;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 0;
+  background: #ff6f91;
+  transform: translateX(-50%);
+  transition: height 1.2s ease;
+  box-shadow: 0 0 10px #ff6f91, 0 0 20px #ff6f91, 0 0 30px #ff6f91;
+  /* Opsional animasi glow */
+  animation: glowLine 2s infinite alternate;
+}
+
+@keyframes glowLine {
+  0% { box-shadow: 0 0 5px #ff6f91, 0 0 10px #ff6f91, 0 0 15px #ff6f91; }
+  50% { box-shadow: 0 0 15px #ff6f91, 0 0 25px #ff6f91, 0 0 35px #ff6f91; }
+  100% { box-shadow: 0 0 5px #ff6f91, 0 0 10px #ff6f91, 0 0 15px #ff6f91; }
+}
+
+.timeline.active .timeline-line {
+  height: 100%;
+}
+
+.timeline{
+  position:relative;
+  width:100%;
+  max-width:500px;
+  margin:40px auto;
+  padding:20px 0;
+}
+
+/* Garis tengah */
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  width:3px;
+  height:100%;
+  background:#ff6f91;
+  transform:translateX(-50%);
+}
+
+.timeline-item {
+  width: 50%;
+  position: relative;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-content{
+  width:calc(100%-20px);
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* SELANG SELING */
+.timeline-item:nth-child(odd) .timeline-content{
+  margin-left:auto;
+}
+
+.timeline-item:nth-child(even) .timeline-content{
+  margin-right:auto;
+}
+
+/* Bulatan di tengah */
+.timeline-item::after{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:15px;
+  height:15px;
+  background:#ff6f91;
+  border-radius:50%;
+  transform:translateX(-50%);
+  z-index: 2;
+}
+  
+.card{  
+background:white;  
+padding:15px;  
+border-radius:15px;  
+box-shadow:0 4px 10px rgba(0,0,0,0.08);  
+opacity:0;  
+transform:translateX(-20px);  
+transition:.5s;  
+}  
+  
+.card.show{  
+opacity:1;  
+transform:translateX(0);  
+}  
+  
+/* Night gradient & glow effect */  
+.night {  
+  background: linear-gradient(to bottom, #0c1b2a, #1a2a45, #0c1b2a);  
+  color: #fff;  
+  position: absolute;  
+  overflow: hidden;  
+}  
+  
+.night h1 {  
+  text-align: center;  
+  font-size: 28px;  
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff6f91, 0 0 30px #ff6f91;  
+  animation: glowText 2s infinite alternate;  
+}  
+  
+@keyframes glowText {  
+  0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff6f91, 0 0 15px #ff6f91; }  
+  50% { text-shadow: 0 0 10px #fff, 0 0 20px #ff6f91, 0 0 30px #ff6f91; }  
+  100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff6f91, 0 0 15px #ff6f91; }  
+}  
+  
+/* Optional: subtle floating hearts in background */  
+.night::before {  
+  content: '💗';  
+  position: absolute;  
+  font-size: 20px;  
+  left: 20%;  
+  top: -5%;  
+  opacity: 0.3;  
+  animation: floatHeart 6s infinite linear;  
+}  
+  
+.night::after {  
+  content: '💖';  
+  position: absolute;  
+  font-size: 25px;  
+  left: 70%;  
+  top: -10%;  
+  opacity: 0.2;  
+  animation: floatHeart 8s infinite linear;  
+}  
+  
+@keyframes floatHeart {  
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }  
+  50% { opacity: 0.6; }  
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }  
+}  
+  
+/* Night */  
+.night{  
+background:#0c1b2a;  
+color:white;  
+}  
+  
+  
+.music-btn{  
+position:absolute;  
+top:15px;  
+right:15px;  
+border-radius:50%;  
+width:40px;  
+height:40px;  
+background:white;  
+}  
+  
+.big-heart{  
+font-size:60px;  
+animation:pop .6s ease;  
+}  
+  
+@keyframes pop{  
+0%{transform:scale(0);}  
+100%{transform:scale(1);}  
+}  
+</style>  </head>  
+<body>  <section id="page1" class="active">  
+<h1>Will you be my Valentine? 💌</h1>  
+<div>  
+<button class="yes" id="yesBtn">YES 💖</button>  
+<button class="no" id="noBtn">NO 🙄</button>  
+</div>  
+<div class="small-text" id="noText"></div>  
+</section>  <section id="page2">  
+<h1>YEAYYYYY 🥳💖</h1>  
+<p>Kamu resmi jadi Valentine aku!</p>  
+<button onclick="showPage(3)">Lanjut 👉</button>  
+</section>  <section id="page3">  
+<h1>Our memory 🤍</h1> 
+
+<div class="slider">
+  <div class="polaroid">  
+  <img src="foto1.jpg">  
+  <p class="caption">Hari dimana kita lomba barengg🤓</p>  
+  </div>
+  <div class="polaroid rotate-right">
+  <img src="foto2.jpg">  
+  <p class="caption">Judulnya sihh latihan senam</p>  
+  </div>
+  <div class="polaroid">
+  <img src="foto3.png">  
+  <p class="caption">First time kita photoboth 🤭</p>  
+  </div>
+  <div class="polaroid rotate-left">
+  <img src="foto4.jpg">  
+  <p class="caption">First date kita lhoooo🥰</p>  
+  </div>  
+   <div class="polaroid">
+  <img src="foto5.jpg">  
+  <p class="caption">flowers day🌹</p>  
+  </div>
+   <div class="polaroid">
+  <img src="foto6.jpg">  
+  <p class="caption">Olahraga bareng sehat bareng😆</p>  
+  </div>
+   <div class="polaroid">
+  <img src="foto7.jpg">  
+  <p class="caption">movie date🍿</p>  
+  </div>
+   <div class="polaroid">
+  <img src="foto8.jpg">  
+  <p class="caption">Belajar barengg🤓</p>  
+  </div>
+   <div class="polaroid">
+  <img src="foto 9.jpg">  
+  <p class="caption"> Hari dimana kita Sertijab(tukeran ceritanya🤭</p>  
+  </div>
+  
+</div>
+
+  
+<button onclick="showPage(4)">Lanjut 👉</button>  
+</section>  <section id="page4">  
+<h1>For You 🤍</h1>  
+<div class="letter" id="letter"></div>  
+<button onclick="showPage(5)">Ada lagi nggak?</button>  
+</section>  <section id="page5">  
+<h1>Timeline Kita 💕</h1> 
+
+<div class="timeline">  
+<div class="timeline-line"></div>
+
+  <div class="timeline-item left">
+    <div class="timeline-content">❤️ 24 Juli 2025 — Hari pertama kita chatan 🥰</div>  
+    </div>
+    <div class="timeline-item right">
+  <div class="timeline-content">❤️ 29 Agustus 2025 pertama kali aku gambarin muka kamuu🖌️</div>
+  </div>
+  <div class="timeline-item left">
+    <div class="timeline-content">❤️ 28 Sep 2025 — First date kita 🤭</div>  
+  </div>
+    <div class="timeline-item right">
+  <div class="timeline-content">❤️ 28 sep 2025 pertama kalinya kita fotbar😆</div>  
+  </div>
+    <div class="timeline-item left">
+  <div class="timeline-content">❤️ 2 Okt 2025 — First flower 💐</div>
+  </div>
+    <div class="timeline-item right"> 
+  <div class="timeline-content">❤️ 16 Okt 2025 — Hari kita jadian 💝</div>
+  </div>
+    <div class="timeline-item left">
+  <div class="timeline-content">❤️ 14 Desember 2025 — First time kita photoboth📸</div>
+  </div>
+  <div class="timeline-item right">
+    <div class="timeline-content">❤️ 19 Januari — 2026 sertijab barenggg😆🫡</div>  
+    </div>
+    <div class="timeline-item left">
+    <div class="timeline-content">❤️ 14 Febuari — Valentineeee 💝</div>  
+    </div>
+    <div class="timeline-item right">
+    <div class="timeline-content">❤️ Future ~ </div>  
+    </div>
+</div>
+<button onclick="showPage(6)">Lanjut 👉</button>  
+</section>  <section id="page6" class="night">  
+<div class="stars"></div>  
+<h1>Janji ya kita tumbuh bareng?<br>Sampai kapanpun.</h1>  
+<button onclick="finalScene()">Promise 🤍</button>  
+<button class="music-btn" onclick="toggleMusic()">🎵</button>  
+<audio id="bgMusic" loop>  
+  <source src="lavender-sentimental-cinematic.mp3" type="audio/mpeg">  
+</audio>  
+<div id="finalText"></div>  
+</section> 
+<script>  
+
+// Timeline animation
+function animateTimeline() {
+  const timeline = document.querySelector('.timeline');
+  const line = timeline.querySelector('.timeline-line');
+  const items = timeline.querySelectorAll('.timeline-item');
+
+  // Garis turun dulu
+  line.style.height = '100%';
+
+  // Item muncul selang-seling
+  items.forEach((item, i) => {
+    setTimeout(() => {
+      item.classList.add('show');
+    }, i * 400); // delay 400ms tiap item
+  });
+}
+
+// Panggil otomatis saat showPage(5)
+window.showPage = function(num){
+  sections.forEach(s => s.classList.remove("active"));
+  document.getElementById("page"+num).classList.add("active");
+
+  // Shooting star page 6
+  if(num === 6){
+    starInterval = setInterval(createShootingStar, 1200);
+  } else {
+    clearInterval(starInterval);
+  }
+
+  // Letter page 4
+  if(num === 4){
+    letter.textContent="";
+    index=0;
+    setTimeout(typeLetter,300);
+  }
+
+  // Timeline page 5
+  if(num === 5){
+    animateTimeline();
+  }
+};
+
+document.addEventListener("DOMContentLoaded", function(){  
+  
+const sections=document.querySelectorAll("section");  
+const yesBtn=document.getElementById("yesBtn");  
+const noBtn=document.getElementById("noText") ? document.getElementById("noBtn") : null;  
+const noText=document.getElementById("noText");  
+const letter=document.getElementById("letter");  
+  
+let starInterval;
+
+window.showPage = function(num){
+  sections.forEach(s => s.classList.remove("active"));
+  document.getElementById("page"+num).classList.add("active");
+
+  // Shooting star hanya di page 6
+  if(num === 6){
+    starInterval = setInterval(()=>{
+      createShootingStar();
+    },1200);
+  } else {
+    clearInterval(starInterval);
+  }
+
+  // Letter animation
+  if(num === 4){
+    letter.textContent="";
+    index=0;
+    setTimeout(typeLetter,300);
+  }
+
+  // Timeline animation
+if(num === 5){
+  animateTimeline();
+  }
+};
+  
+let scale=1;  
+let clicks=0;  
+const msgs=["Yakin?","Masa sih?","Aku tungguin loh 😌"];  
+  
+document.getElementById("noBtn").addEventListener("click",()=>{  
+scale+=0.2;  
+yesBtn.style.transform=`scale(${scale})`;  
+if(clicks<msgs.length){  
+noText.textContent=msgs[clicks];  
+}  
+clicks++;  
+});  
+  
+yesBtn.addEventListener("click", () => {
+  const music = document.getElementById("bgMusic");
+  music.currentTime = 0;
+  music.play().catch(() => {});
+  
+  const emojis = ["💖", "💗", "💘", "💕"];
+  
+  for (let i = 0; i < 30; i++) {
+    let conf = document.createElement("div");
+    conf.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    
+    conf.style.position = "fixed";
+    conf.style.left = Math.random() * 100 + "%";
+    conf.style.top = "-20px";
+    conf.style.fontSize = (30 + Math.random() * 45) + "px";
+    conf.style.animation = `fall ${3 + Math.random()*2}s linear`;
+    conf.style.pointerEvents = "none";
+    conf.style.zIndex = "9999";
+    
+    document.body.appendChild(conf);
+    
+    setTimeout(() => conf.remove(), 5000);
+  }
+  
+  setTimeout(() => {
+    showPage(2);
+  }, 500);
+});
+  
+const text=`  
+  
+  Indry sayanggg💝  
+    
+Terima kasih sudah hadir di hidup aku.Kamu bikin hari - hariku lebih berwarna, lebih hangat, dan lebih bermakna.Aku nggak selalu sempurna, kadang juga nyebelin😅  
+  
+Aku bersyukur banget bisa punya kamu,Semoga kita bisa terus bareng, dan bikin banyak kenangan indah lagi di masa depan.Kamu itu hadiah terindah yang pernah aku punya💝  
+Happy Valentine sayanggh😆.Aku sayang kamu lebih dari kata  
+kata yang bisa aku tulis`;  
+  
+let index=0;  
+function typeLetter(){  
+if(index<text.length){  
+letter.textContent+=text[index];  
+index++;  
+setTimeout(typeLetter,40);  
+}  
+}  
+  
+setInterval(()=>{  
+let h=document.createElement("div");  
+h.className="heart";  
+h.innerHTML="💗";  
+h.style.left=Math.random()*100+"%";  
+h.style.animationDuration=4+Math.random()*4+"s";  
+document.body.appendChild(h);  
+setTimeout(()=>h.remove(),8000);  
+},600);  
+  
+window.finalScene=function(){  
+document.getElementById("finalText").innerHTML=  
+"<div class='big-heart'>💖</div><p>Thank you for choosing me.<br>Happy Valentine’s Day 🤍</p>";  
+};  
+  
+  function createShootingStar() {
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("shooting-wrapper");
+  
+  const star = document.createElement("div");
+  star.classList.add("shooting-star");
+  
+  wrapper.appendChild(star);
+  
+  wrapper.style.top = "-60px";
+  wrapper.style.left = Math.random() * window.innerWidth + "px";
+  
+  const container = document.querySelector("#page6 .stars");
+  container.appendChild(wrapper);
+  
+  setTimeout(() => wrapper.remove(), 1200);
+}
+  
+window.toggleMusic=function(){  
+let m=document.getElementById("bgMusic");  
+m.paused?m.play():m.pause();  
+};  
+  
+  const starsContainer=document.querySelector(".stars");
+for(let i=0;i<80;i++){
+  let star=document.createElement("div");
+  star.style.position="absolute";
+  star.style.width="2px";
+  star.style.height="2px";
+  star.style.background="white";
+  star.style.borderRadius="50%";
+  star.style.top=Math.random()*100+"%";
+  star.style.left=Math.random()*100+"%";
+  star.style.opacity=Math.random();
+  starsContainer.appendChild(star);
+}
+  
+});  
+</script>  </body>  
+</html>  
